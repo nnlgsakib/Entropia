@@ -1,5 +1,5 @@
 # game/player/backrooms_player.gd
-# First-person player for backrooms — walking only, no sprint
+# First-person player — WASD + mouse look
 extends CharacterBody3D
 
 @export var move_speed: float = 3.5
