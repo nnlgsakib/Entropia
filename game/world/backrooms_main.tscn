@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmain003"]
+[gd_scene load_steps=6 format=3 uid="uid://bmain003"]
 
 [ext_resource type="PackedScene" path="res://game/player/backrooms_player.tscn" id="1"]
 [ext_resource type="Script" path="res://game/world/room_generator.gd" id="2"]
+[ext_resource type="Script" path="res://game/audio/chaos_audio.gd" id="3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -38,6 +39,11 @@ environment = SubResource("Environment_1")
 script = ExtResource("2")
 world_seed = 42
 render_distance = 3
+
+[node name="ChaosAudio" type="Node" parent="."]
+script = ExtResource("3")
+world_seed = 42
+master_volume = 0.35
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 4)
