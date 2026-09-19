@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmain005"]
+[gd_scene load_steps=10 format=3 uid="uid://bmain005"]
 
 [ext_resource type="PackedScene" path="res://game/player/backrooms_player.tscn" id="1"]
 [ext_resource type="Script" path="res://game/world/room_generator.gd" id="2"]
 [ext_resource type="Script" path="res://game/audio/chaos_audio.gd" id="3"]
+[ext_resource type="Script" path="res://game/world/world_root.gd" id="4"]
+[ext_resource type="PackedScene" path="res://ui/hud/ingame_hud.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://ui/menus/pause_menu.tscn" id="6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -31,6 +34,7 @@ ssao_radius = 1.0
 ssao_intensity = 1.5
 
 [node name="BackroomsWorld" type="Node3D"]
+script = ExtResource("4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1")
@@ -47,3 +51,7 @@ master_volume = 0.35
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 4)
+
+[node name="InGameHUD" parent="." instance=ExtResource("5")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("6")]

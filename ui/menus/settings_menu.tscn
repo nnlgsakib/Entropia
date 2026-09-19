@@ -1,0 +1,261 @@
+[gd_scene load_steps=2 format=3 uid="uid://entropiasettings001"]
+
+[ext_resource type="Script" path="res://ui/menus/settings_menu.gd" id="1_settings"]
+
+[node name="SettingsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_settings")
+
+[node name="Dim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.68)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(780, 0)
+layout_mode = 2
+
+[node name="Column" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Center/Panel/Column"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.97, 1, 1)
+theme_override_font_sizes/font_size = 34
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="TitleSeparator" type="HSeparator" parent="Center/Panel/Column"]
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="Center/Panel/Column"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 14
+columns = 3
+
+[node name="VolumeLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Master Volume"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="VolumeValue" type="Label" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "80%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SensitivityLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Mouse Sensitivity"
+vertical_alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.0005
+max_value = 0.01
+step = 0.0005
+value = 0.0025
+
+[node name="SensitivityValue" type="Label" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "2.5"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FovLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Field of View"
+vertical_alignment = 1
+
+[node name="FovSlider" type="HSlider" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 60.0
+max_value = 110.0
+step = 1.0
+value = 78.0
+
+[node name="FovValue" type="Label" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "78"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="InvertLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Invert Y Axis"
+vertical_alignment = 1
+
+[node name="InvertCheck" type="CheckButton" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="InvertFiller" type="Control" parent="Center/Panel/Column/Grid"]
+layout_mode = 2
+
+[node name="DisplayModeLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Display Mode"
+vertical_alignment = 1
+
+[node name="DisplayModeOption" type="OptionButton" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen (Exclusive)"
+popup/item_2/id = 2
+
+[node name="DisplayModeFiller" type="Control" parent="Center/Panel/Column/Grid"]
+layout_mode = 2
+
+[node name="RenderDistanceLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Render Distance"
+vertical_alignment = 1
+
+[node name="RenderDistanceSlider" type="HSlider" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 6.0
+step = 1.0
+value = 3.0
+
+[node name="RenderDistanceValue" type="Label" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EffectsLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Glow & SSAO"
+vertical_alignment = 1
+
+[node name="EffectsCheck" type="CheckButton" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+button_pressed = true
+
+[node name="EffectsFiller" type="Control" parent="Center/Panel/Column/Grid"]
+layout_mode = 2
+
+[node name="VsyncLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "V-Sync"
+vertical_alignment = 1
+
+[node name="VsyncCheck" type="CheckButton" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+button_pressed = true
+
+[node name="VsyncFiller" type="Control" parent="Center/Panel/Column/Grid"]
+layout_mode = 2
+
+[node name="ShowFpsLabel" type="Label" parent="Center/Panel/Column/Grid"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Show FPS"
+vertical_alignment = 1
+
+[node name="ShowFpsCheck" type="CheckButton" parent="Center/Panel/Column/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="ShowFpsFiller" type="Control" parent="Center/Panel/Column/Grid"]
+layout_mode = 2
+
+[node name="BottomSeparator" type="HSeparator" parent="Center/Panel/Column"]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Column"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="Center/Panel/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+text = "RESET DEFAULTS"
+
+[node name="BackButton" type="Button" parent="Center/Panel/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+text = "BACK"
+
+[node name="HintLabel" type="Label" parent="Center/Panel/Column"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.56, 0.68, 1)
+theme_override_font_sizes/font_size = 14
+text = "F11 cycles the display mode — changes are saved when you close this panel"
+horizontal_alignment = 1

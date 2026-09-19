@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://entropiapause001"]
+
+[ext_resource type="Script" path="res://ui/menus/pause_menu.gd" id="1_pause"]
+[ext_resource type="PackedScene" path="res://ui/menus/settings_menu.tscn" id="2_settings"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_pause")
+
+[node name="PausePanel" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72)
+
+[node name="Center" type="CenterContainer" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Column" type="VBoxContainer" parent="PausePanel/Center"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="PausePanel/Center/Column"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 46
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PausePanel/Center/Column"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="PausePanel/Center/Column"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ResumeButton" type="Button" parent="PausePanel/Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "RESUME"
+
+[node name="PauseSettingsButton" type="Button" parent="PausePanel/Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="MainMenuButton" type="Button" parent="PausePanel/Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "MAIN MENU"
+
+[node name="PauseQuitButton" type="Button" parent="PausePanel/Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "QUIT"
+
+[node name="SettingsOverlay" parent="." instance=ExtResource("2_settings")]
+unique_name_in_owner = true
+visible = false

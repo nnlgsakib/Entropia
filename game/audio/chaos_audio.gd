@@ -5,10 +5,18 @@ extends Node
 
 @export var master_volume: float = 0.35
 @export var world_seed: int = 0
+## Use the seed chosen by GameManager instead of the inspector value.
+@export var use_game_seed: bool = true
 
 const SR: int = 22050
 const MIX_RATE: int = 22050
 const BUFFER_LEN: float = 2.0
+## Frames generated per tick — caps the per-frame cost of the sample generator.
+const MAX_FRAMES_PER_TICK: int = 4096
+## Scream oscillator ramp rate (kept from the original C port).
+const SCREAM_RATE: float = 1600.0
+## Glitches are rolled once every N samples instead of on every sample.
+const GLITCH_CHECK_MASK: int = 63
 
 var _player: AudioStreamPlayer
 var _playback: AudioStreamGeneratorPlayback
@@ -43,6 +51,8 @@ var _drone_freq3: float = 33.0
 var _audio_type: int = 0
 
 func _ready() -> void:
+	if use_game_seed and GameManager != null:
+		world_seed = GameManager.current_seed
 	_rng.initialize(world_seed)
 	_randomize_params()
 	_setup_player()
@@ -88,7 +98,7 @@ func _process(_delta: float) -> void:
 	if _playback == null:
 		return
 
-	var frames = _playback.get_frames_available()
+	var frames: int = mini(_playback.get_frames_available(), MAX_FRAMES_PER_TICK)
 	if frames <= 0:
 		return
 
@@ -134,7 +144,7 @@ func _generate_sample() -> float:
 	dist = dist / (1.0 + absf(dist) * _distortion)
 
 	# Scream
-	_scream_phase += 100.0 + 1500.0
+	_scream_phase += SCREAM_RATE
 	var scream: float = sin(_scream_phase * 0.003) * _scream_env
 	_scream_env *= 0.97
 	if _scream_env < 0.001:
@@ -169,11 +179,18 @@ func _generate_sample() -> float:
 	s = clampf(s, -1.0, 1.0)
 
 	# Random glitch
-	if _rng.randf_range(0.0, 1.0) < 0.02:
+	if (_sample_pos & GLITCH_CHECK_MASK) == 0 and _rng.randf() < 0.02:
 		s = (_rng.randf_range(-1.0, 1.0) * 0.5 + s * 0.5) * 2.0
 
 	_sample_pos += 1
 	return clampf(s, -1.0, 1.0)
+
+func _exit_tree() -> void:
+	# Drop the generator reference explicitly so shutdown stays leak-free.
+	if _player != null and _player.playing:
+		_player.stop()
+	_playback = null
+
 
 func _hz_to_inc(hz: float) -> int:
 	var inc: float = hz * (4294967296.0 / float(SR))

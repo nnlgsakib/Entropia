@@ -1,0 +1,123 @@
+[gd_scene load_steps=5 format=3 uid="uid://entropiamenu001"]
+
+[ext_resource type="Script" path="res://ui/menus/main_menu.gd" id="1_menu"]
+[ext_resource type="Shader" path="res://rendering/menu_background.gdshader" id="2_bg"]
+[ext_resource type="PackedScene" path="res://ui/menus/settings_menu.tscn" id="3_settings"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg"]
+shader = ExtResource("2_bg")
+shader_parameter/speed = 0.045
+shader_parameter/brightness = 0.7
+shader_parameter/pattern_scale = 3.2
+shader_parameter/deep_color = Color(0.02, 0.01, 0.05, 1)
+shader_parameter/accent_color = Color(0, 0.34, 0.44, 1)
+shader_parameter/hot_color = Color(0.45, 0.03, 0.22, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.02, 0.03, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Column" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Center/Column"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 68
+text = "ENTROPIA"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/Column"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.72, 0.82, 1)
+theme_override_font_sizes/font_size = 17
+text = "endless procedural chaos"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/Column"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Center/Column"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PlayButton" type="Button" parent="Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "NEW RUN"
+
+[node name="SettingsButton" type="Button" parent="Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="Center/Column/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 54)
+layout_mode = 2
+text = "QUIT"
+
+[node name="VersionLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -40.0
+offset_right = 320.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.45, 0.5, 0.62, 1)
+theme_override_font_sizes/font_size = 14
+text = "v0.0.0"
+
+[node name="HintLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -460.0
+offset_top = -40.0
+offset_right = -20.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.45, 0.5, 0.62, 1)
+theme_override_font_sizes/font_size = 14
+text = "WASD move  ·  Mouse look  ·  ESC pause  ·  F11 fullscreen"
+horizontal_alignment = 2
+
+[node name="SettingsOverlay" parent="." instance=ExtResource("3_settings")]
+unique_name_in_owner = true
+visible = false
