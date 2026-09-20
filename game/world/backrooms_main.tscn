@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmain005"]
+[gd_scene load_steps=11 format=3 uid="uid://bmain005"]
 
 [ext_resource type="PackedScene" path="res://game/player/backrooms_player.tscn" id="1"]
 [ext_resource type="Script" path="res://game/world/room_generator.gd" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://game/world/world_root.gd" id="4"]
 [ext_resource type="PackedScene" path="res://ui/hud/ingame_hud.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://ui/menus/pause_menu.tscn" id="6"]
+[ext_resource type="Script" path="res://game/world/experiment_generator.gd" id="7_experiments"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -48,6 +49,12 @@ render_distance = 3
 script = ExtResource("3")
 world_seed = 42
 master_volume = 0.35
+
+[node name="ExperimentGenerator" type="Node3D" parent="."]
+script = ExtResource("7_experiments")
+world_seed = 42
+chunks_per_sector = 2
+sector_render_distance = 1
 
 [node name="Player" parent="." instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 4)

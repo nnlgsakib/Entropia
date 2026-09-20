@@ -54,6 +54,22 @@ theme_override_font_sizes/font_size = 15
 text = "60 FPS"
 horizontal_alignment = 2
 
+[node name="ZoneLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 58.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.62, 0.82, 0.9, 0.9)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [node name="HintLabel" type="Label" parent="."]
 layout_mode = 3
 anchors_preset = 7
